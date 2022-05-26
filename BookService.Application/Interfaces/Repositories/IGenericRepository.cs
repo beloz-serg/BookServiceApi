@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BookService.Application.Interfaces.Repositories
 {
     public interface IGenericRepository<TEntity, TKey> where TEntity : class
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity Get(TKey id);
-        int Add(TEntity entity);
-        int Update(TEntity entity);
-        int Delete(TKey id);
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetAsync(TKey id);
+        Task<int> AddAsync(TEntity entity);
+        Task<int> UpdateAsync(TEntity entity);
+        Task<int> DeleteAsync(TKey id);
     }
 }
