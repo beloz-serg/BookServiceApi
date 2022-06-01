@@ -27,17 +27,19 @@ namespace BookService.Application.Services
             return _mapper.Map<IEnumerable<AuthorDto>>(rows);
         }
 
-        public Task<int> ModifyAsync(AuthorDto author)
+        public async Task<int> ModifyAsync(AuthorDto dto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> NewAsync(AuthorDto author)
+        public async Task<int> NewAsync(AuthorDto dto)
         {
-            throw new NotImplementedException();
+            var author = _mapper.Map<Author>(dto);
+
+            return await _dataSource.AddAsync(author);
         }
 
-        public Task<int> RemoveAsync(int id)
+        public async Task<int> RemoveAsync(int id)
         {
             throw new NotImplementedException();
         }

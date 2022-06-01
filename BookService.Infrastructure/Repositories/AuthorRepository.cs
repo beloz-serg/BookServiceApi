@@ -1,8 +1,10 @@
-﻿using BookService.Application.Interfaces.Repositories;
+﻿using BookService.Application.Interfaces.Configuration;
+using BookService.Application.Interfaces.Repositories;
 using BookService.Domain.Entities;
 using BookService.Infrastructure.Constants.DbQuery;
 using BookService.Infrastructure.Repositories.Base;
 using Dapper;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,6 +12,10 @@ namespace BookService.Infrastructure.Repositories
 {
     public class AuthorRepository : BaseRepository, IAuthorRepository
     {
+        public AuthorRepository(IConfigProvider config, ILogger<AuthorRepository> logger) : base(config, logger)
+        {
+        }
+
         public async Task<int> AddAsync(Author entity)
         {
             return await WithLogger(db => db.ExecuteAsync(AuthorQuery.Insert.One, entity));

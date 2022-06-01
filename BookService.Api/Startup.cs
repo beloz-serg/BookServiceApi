@@ -1,6 +1,7 @@
 using BookService.Api.Constants;
 using BookService.Application.DI;
 using BookService.Application.Logging;
+using BookService.Domain.Parameters;
 using BookService.Infrastructure.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,11 +30,16 @@ namespace BookService.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddConfigProvider(Configuration, new ConfigParameter
+            {
+                ConnectionName = Settings.DefaultConnectionStringName
+            });
             services.AddLogger(Settings.NLogConfigFileName);
             services.AddMapping();
             services.AddInfrastructure();
             services.AddDataServices();
 
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
