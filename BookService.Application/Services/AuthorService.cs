@@ -3,7 +3,6 @@ using BookService.Application.Interfaces.Repositories;
 using BookService.Application.Interfaces.Services;
 using BookService.Domain.Dto;
 using BookService.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,9 +26,18 @@ namespace BookService.Application.Services
             return _mapper.Map<IEnumerable<AuthorDto>>(rows);
         }
 
+        public async Task<AuthorDto> GetAuthorById(int id)
+        {
+            var row = await _dataSource.GetAsync(id);
+
+            return _mapper.Map<AuthorDto>(row);
+        }
+
         public async Task<int> ModifyAsync(AuthorDto dto)
         {
-            throw new NotImplementedException();
+            var author = _mapper.Map<Author>(dto);
+
+            return await _dataSource.UpdateAsync(author);
         }
 
         public async Task<int> NewAsync(AuthorDto dto)
@@ -41,7 +49,7 @@ namespace BookService.Application.Services
 
         public async Task<int> RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dataSource.DeleteAsync(id);
         }
     }
 }

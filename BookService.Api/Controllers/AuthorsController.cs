@@ -2,10 +2,7 @@
 using BookService.Application.Interfaces.Services;
 using BookService.Domain.Dto;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookService.Api.Controllers
@@ -19,12 +16,42 @@ namespace BookService.Api.Controllers
             _authorService = authorService;
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddAuthor(AuthorDto author)
+        [HttpGet("list")]
+        public async Task<IEnumerable<AuthorDto>> GetAuthors()
         {
-            var result = await _authorService.NewAsync(author);
+            return await _authorService.GetAuthorsAsync();
+        }
+
+        [HttpGet("get")]
+        public async Task<ActionResult<AuthorDto>> GetById(int id)
+        {
+            var result = await _authorService.GetAuthorById(id);
+
+            return result == null ? NotFound() : result;
+        }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> AddAuthor(AuthorDto dto)
+        {
+            var result = await _authorService.NewAsync(dto);
 
             return result > 0 ? Ok() : StatusCode(500);
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(AuthorDto dto)
+        {
+            var result = await _authorService.ModifyAsync(dto);
+
+            return result > 0 ? Ok() : NotFound();
+        }
+
+        [HttpDelete("remove")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _authorService.RemoveAsync(id);
+
+            return result > 0 ? Ok() : NotFound();
         }
     }
 }

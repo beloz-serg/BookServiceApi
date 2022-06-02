@@ -8,6 +8,8 @@ namespace BookService.Application.Interfaces.Services
     {
         Task<IEnumerable<AuthorDto>> GetAuthorsAsync();
 
+        Task<AuthorDto> GetAuthorById(int id);
+
         Task<int> NewAsync(AuthorDto author);
 
         Task<int> ModifyAsync(AuthorDto author);
