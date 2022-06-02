@@ -8,11 +8,11 @@ namespace BookService.Application.Interfaces.Services
     {
         Task<IEnumerable<AuthorDto>> GetAuthorsAsync();
 
-        Task<AuthorDto> GetAuthorById(int id);
+        Task<AuthorDto> GetAuthorByIdAsync(int id);
 
-        Task<int> NewAsync(AuthorDto author);
+        Task<int> NewAsync(AuthorDto dto);
 
-        Task<int> ModifyAsync(AuthorDto author);
+        Task<int> ModifyAsync(AuthorDto dto);
 
         Task<int> RemoveAsync(int id);
     }

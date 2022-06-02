@@ -21,16 +21,16 @@ namespace BookService.Application.Services
 
         public async Task<IEnumerable<AuthorDto>> GetAuthorsAsync()
         {
-            var rows = await _dataSource.GetAllAsync();
+            var authors = await _dataSource.GetAllAsync();
 
-            return _mapper.Map<IEnumerable<AuthorDto>>(rows);
+            return _mapper.Map<IEnumerable<AuthorDto>>(authors);
         }
 
-        public async Task<AuthorDto> GetAuthorById(int id)
+        public async Task<AuthorDto> GetAuthorByIdAsync(int id)
         {
-            var row = await _dataSource.GetAsync(id);
+            var author = await _dataSource.GetAsync(id);
 
-            return _mapper.Map<AuthorDto>(row);
+            return _mapper.Map<AuthorDto>(author);
         }
 
         public async Task<int> ModifyAsync(AuthorDto dto)

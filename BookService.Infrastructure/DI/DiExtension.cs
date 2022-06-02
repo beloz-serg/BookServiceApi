@@ -13,6 +13,7 @@ namespace BookService.Infrastructure.DI
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
 
             return services;
         }

@@ -10,6 +10,7 @@ namespace BookService.Application.Mapping
             var mapConfiguration = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new AuthorProfile());
+                mc.AddProfile(new BookProfile());
             });
 
             return mapConfiguration.CreateMapper();

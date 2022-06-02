@@ -7,41 +7,41 @@ using System.Threading.Tasks;
 
 namespace BookService.Api.Controllers
 {
-    public class AuthorsController : BaseController
+    public class BooksController : BaseController
     {
-        private IAuthorService _authorService;
+        private IBookService _bookService;
 
-        public AuthorsController(IAuthorService authorService)
+        public BooksController(IBookService bookService)
         {
-            _authorService = authorService;
+            _bookService = bookService;
         }
 
         [HttpGet("list")]
-        public async Task<IEnumerable<AuthorDto>> GetAuthors()
+        public async Task<IEnumerable<BookDto>> GetBooks()
         {
-            return await _authorService.GetAuthorsAsync();
+            return await _bookService.GetBooksAsync();
         }
 
         [HttpGet("get")]
-        public async Task<ActionResult<AuthorDto>> GetById(int id)
+        public async Task<ActionResult<BookDto>> GetById(int id)
         {
-            var result = await _authorService.GetAuthorByIdAsync(id);
+            var result = await _bookService.GetBookByIdAsync(id);
 
             return result == null ? NotFound() : result;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddAuthor(AuthorDto dto)
+        public async Task<IActionResult> AddBook(BookDto dto)
         {
-            var result = await _authorService.NewAsync(dto);
+            var result = await _bookService.NewAsync(dto);
 
             return result > 0 ? Ok() : StatusCode(500);
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update(AuthorDto dto)
+        public async Task<IActionResult> Update(BookDto dto)
         {
-            var result = await _authorService.ModifyAsync(dto);
+            var result = await _bookService.ModifyAsync(dto);
 
             return result > 0 ? Ok() : NotFound();
         }
@@ -49,7 +49,7 @@ namespace BookService.Api.Controllers
         [HttpDelete("remove")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _authorService.RemoveAsync(id);
+            var result = await _bookService.RemoveAsync(id);
 
             return result > 0 ? Ok() : NotFound();
         }

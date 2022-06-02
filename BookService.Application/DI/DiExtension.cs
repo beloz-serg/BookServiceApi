@@ -11,6 +11,7 @@ namespace BookService.Application.DI
         public static IServiceCollection AddDataServices(this IServiceCollection services)
         {
             services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IBookService, Services.BookService>();
 
             return services;
         }
