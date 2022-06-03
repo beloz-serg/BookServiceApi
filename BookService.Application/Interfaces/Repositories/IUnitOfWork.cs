@@ -2,8 +2,8 @@
 {
     public interface IUnitOfWork
     {
-        IAuthorRepository AuthorRepository { get; set; }
-        IBookRepository BookRepository { get; set; }
-        IBookDataRepository BookDataRepository { get; set; }
+        IAuthorRepository AuthorRepository { get;}
+        IBookRepository BookRepository { get; }
+        IBookDataRepository BookDataRepository { get; }
     }
 }

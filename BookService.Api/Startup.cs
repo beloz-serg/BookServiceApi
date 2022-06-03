@@ -36,7 +36,7 @@ namespace BookService.Api
             });
             services.AddLogger(Settings.NLogConfigFileName);
             services.AddMapping();
-            services.AddInfrastructure();
+            services.AddDataSources();
             services.AddDataServices();
 
             services.AddRouting(options => options.LowercaseUrls = true);
