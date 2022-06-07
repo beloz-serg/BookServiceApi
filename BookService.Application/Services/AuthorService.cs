@@ -3,6 +3,7 @@ using BookService.Application.Interfaces.Repositories;
 using BookService.Application.Interfaces.Services;
 using BookService.Domain.Dto;
 using BookService.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,6 +36,11 @@ namespace BookService.Application.Services
 
         public async Task<int> ModifyAsync(AuthorDto dto)
         {
+            if (string.IsNullOrWhiteSpace(dto.Name))
+            {
+                throw new ArgumentException(nameof(dto.Name));
+            }
+
             var author = _mapper.Map<Author>(dto);
 
             return await _dataSource.UpdateAsync(author);
@@ -42,6 +48,11 @@ namespace BookService.Application.Services
 
         public async Task<int> NewAsync(AuthorDto dto)
         {
+            if (string.IsNullOrWhiteSpace(dto.Name))
+            {
+                throw new ArgumentException(nameof(dto.Name));
+            }
+
             var author = _mapper.Map<Author>(dto);
 
             return await _dataSource.AddAsync(author);
