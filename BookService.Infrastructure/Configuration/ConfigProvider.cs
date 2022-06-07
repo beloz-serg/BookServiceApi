@@ -15,8 +15,7 @@ namespace BookService.Infrastructure.Configuration
         {
             get
             {
-                return _config[ConfigKeys.Enviroment.ASPNETCORE_ENVIRONMENT.Key] ==
-                    ConfigKeys.Enviroment.ASPNETCORE_ENVIRONMENT.Development;
+                return _configParameter.IsDevelopment;
             }
         }
 
