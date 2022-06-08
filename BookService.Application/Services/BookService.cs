@@ -3,6 +3,8 @@ using BookService.Application.Interfaces.Repositories;
 using BookService.Application.Interfaces.Services;
 using BookService.Domain.Dto;
 using BookService.Domain.Entities;
+using BookService.Domain.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,6 +37,8 @@ namespace BookService.Application.Services
 
         public async Task<int> ModifyAsync(BookDto dto)
         {
+            ValidateBookDto(dto);
+
             var book = _mapper.Map<Book>(dto);
 
             return await _dataSource.UpdateAsync(book);
@@ -42,6 +46,8 @@ namespace BookService.Application.Services
 
         public async Task<int> NewAsync(BookDto dto)
         {
+            ValidateBookDto(dto);
+
             var book = _mapper.Map<Book>(dto);
 
             return await _dataSource.AddAsync(book);
@@ -50,6 +56,29 @@ namespace BookService.Application.Services
         public async Task<int> RemoveAsync(int id)
         {
             return await _dataSource.DeleteAsync(id);
+        }
+
+        public static void ValidateBookDto(BookDto dto)
+        {
+            if (dto.Title.IsEmpty())
+            {
+                throw new ArgumentException(nameof(dto.Title));
+            }
+
+            if (dto.Img.IsEmpty())
+            {
+                throw new ArgumentException(nameof(dto.Img));
+            }
+
+            if (dto.Price <= 0)
+            {
+                throw new ArgumentException(nameof(dto.Price));
+            }
+
+            if (dto.AuthorId <= 0)
+            {
+                throw new ArgumentException(nameof(dto.AuthorId));
+            }
         }
     }
 }

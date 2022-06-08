@@ -12,13 +12,13 @@ namespace BookService.Application.Test.Services
 {
     public class AuthorServiceTest
     {
-        private Mock<IAuthorRepository> _authorRepoMock = new Mock<IAuthorRepository>();
-        private Mock<IMapper> _mapperMock = new Mock<IMapper>();
-        private AuthorService _authorService;
+        private readonly Mock<IAuthorRepository> _authorRepoMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
+        private readonly AuthorService _service;
 
         public AuthorServiceTest()
         {
-            _authorService = new AuthorService(_authorRepoMock.Object, _mapperMock.Object);
+            _service = new AuthorService(_authorRepoMock.Object, _mapperMock.Object);
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace BookService.Application.Test.Services
             _mapperMock.Setup(x => x.Map<Author>(dto)).Returns(author);
             _authorRepoMock.Setup(x => x.AddAsync(author)).ReturnsAsync(expected);
 
-            var actual = await _authorService.NewAsync(dto);
+            var actual = await _service.NewAsync(dto);
 
             Assert.Equal(expected, actual);
         }
@@ -50,7 +50,7 @@ namespace BookService.Application.Test.Services
         {
             var dto = new AuthorDto();
 
-            await Assert.ThrowsAsync<ArgumentException>(() => _authorService.NewAsync(dto));
+            await Assert.ThrowsAsync<ArgumentException>(() => _service.NewAsync(dto));
         }
 
         [Fact]
@@ -72,7 +72,7 @@ namespace BookService.Application.Test.Services
             _mapperMock.Setup(x => x.Map<Author>(dto)).Returns(author);
             _authorRepoMock.Setup(x => x.UpdateAsync(author)).ReturnsAsync(expected);
 
-            var actual = await _authorService.ModifyAsync(dto);
+            var actual = await _service.ModifyAsync(dto);
 
             Assert.Equal(expected, actual);
         }
@@ -82,7 +82,7 @@ namespace BookService.Application.Test.Services
         {
             var dto = new AuthorDto();
 
-            await Assert.ThrowsAsync<ArgumentException>(() => _authorService.ModifyAsync(dto));
+            await Assert.ThrowsAsync<ArgumentException>(() => _service.ModifyAsync(dto));
         }
     }
 }
