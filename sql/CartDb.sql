@@ -1,0 +1,9 @@
+CREATE TABLE CartItems
+(
+	CartItemId SERIAL PRIMARY KEY,
+	Book CHARACTER VARYING(150) NOT NULL,
+	Price NUMERIC(12, 2) CHECK (Price IS NOT NULL AND Price > 0),
+	UserEmail CHARACTER VARYING(100) NOT NULL
+);
+
+CREATE INDEX cart_item_id_index ON CartItems(CartItemId);

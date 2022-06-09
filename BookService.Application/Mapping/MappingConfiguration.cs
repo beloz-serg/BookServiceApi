@@ -12,6 +12,7 @@ namespace BookService.Application.Mapping
                 mc.AddProfile(new AuthorProfile());
                 mc.AddProfile(new BookProfile());
                 mc.AddProfile(new BookDataProfile());
+                mc.AddProfile(new CartItemProfile());
             });
 
             return mapConfiguration.CreateMapper();

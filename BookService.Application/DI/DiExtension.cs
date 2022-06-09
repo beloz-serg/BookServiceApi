@@ -8,11 +8,18 @@ namespace BookService.Application.DI
 {
     public static class DiExtension
     {
-        public static IServiceCollection AddDataServices(this IServiceCollection services)
+        public static IServiceCollection AddBookDataServices(this IServiceCollection services)
         {
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IBookService, Services.BookService>();
             services.AddTransient<IBookDataService, BookDataService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddCartDataServices(this IServiceCollection services)
+        {
+            services.AddTransient<ICartService, CartService>();
 
             return services;
         }

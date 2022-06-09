@@ -1,0 +1,17 @@
+CREATE TABLE Authors
+(
+	AuthorId SERIAL PRIMARY KEY,
+	AuthorName CHARACTER VARYING(100) NOT NULL
+);
+
+CREATE TABLE Books
+(
+	BookId SERIAL PRIMARY KEY,
+	AuthorId INTEGER REFERENCES Authors (AuthorId) NOT NULL,
+	Title CHARACTER VARYING (150) NOT NULL,
+	Img CHARACTER VARYING (300),
+	Price NUMERIC(12, 2) CHECK (Price IS NOT NULL AND Price > 0)
+);
+
+CREATE INDEX author_id_index ON Authors (AuthorId);
+CREATE INDEX book_id_index ON Books (BookId);

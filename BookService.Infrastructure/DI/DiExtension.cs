@@ -10,12 +10,18 @@ namespace BookService.Infrastructure.DI
 {
     public static class DiExtension
     {
-        public static IServiceCollection AddDataSources(this IServiceCollection services)
+        public static IServiceCollection AddBookDataSources(this IServiceCollection services)
         {
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookDataRepository, BookDataRepository>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddCartDataSources(this IServiceCollection services)
+        {
+            services.AddTransient<ICartRepository, CartRepository>();
 
             return services;
         }

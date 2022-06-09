@@ -13,7 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookService.Infrastructure"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6FDD9D97-9EC5-4588-AC6A-A97B9BB256A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Application.Test", "BookService.Application.Test\BookService.Application.Test.csproj", "{F4B93FE1-D90E-4108-BA08-1698328AAEB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookService.Application.Test", "BookService.Application.Test\BookService.Application.Test.csproj", "{F4B93FE1-D90E-4108-BA08-1698328AAEB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{7DCC6B55-353D-4D12-95C6-CA40A90D0C34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService.Api", "CartService.Api\CartService.Api.csproj", "{81AB9DBC-E808-4B41-AFDD-9B7BC9095344}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{19F01263-6C14-4D7A-8F54-608AB2EF8A2C}"
+	ProjectSection(SolutionItems) = preProject
+		sql\BooksDb.sql = sql\BooksDb.sql
+		sql\CartDb.sql = sql\CartDb.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +51,18 @@ Global
 		{F4B93FE1-D90E-4108-BA08-1698328AAEB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4B93FE1-D90E-4108-BA08-1698328AAEB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4B93FE1-D90E-4108-BA08-1698328AAEB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81AB9DBC-E808-4B41-AFDD-9B7BC9095344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81AB9DBC-E808-4B41-AFDD-9B7BC9095344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81AB9DBC-E808-4B41-AFDD-9B7BC9095344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81AB9DBC-E808-4B41-AFDD-9B7BC9095344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{7A6DB446-4BC7-4994-BC93-FC7CDDF8949C} = {7DCC6B55-353D-4D12-95C6-CA40A90D0C34}
 		{F4B93FE1-D90E-4108-BA08-1698328AAEB9} = {6FDD9D97-9EC5-4588-AC6A-A97B9BB256A0}
+		{81AB9DBC-E808-4B41-AFDD-9B7BC9095344} = {7DCC6B55-353D-4D12-95C6-CA40A90D0C34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7933A660-00CA-438F-B07A-75208AFBC72E}
